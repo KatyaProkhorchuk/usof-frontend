@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { CookiesProvider } from "react-cookie";
 
 // import { login } from './component/login'
 import { store } from './app/store';
@@ -12,9 +13,9 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <CookiesProvider store={store}>
       <App />
-    </Provider>
+    </CookiesProvider>
    
   </React.StrictMode>,
   document.getElementById('root')

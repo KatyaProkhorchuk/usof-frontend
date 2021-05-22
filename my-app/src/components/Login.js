@@ -1,10 +1,16 @@
 import axios from 'axios';
 import React from 'react';
+import Cookies from 'universal-cookie';
+import { Link } from "react-router-dom";
+import Posts from './Posts.js'
+
+const cookies = new Cookies();
 
 export default class Login extends React.Component{
         state={
                 email:'',
                 password:'',
+                flag:'',
         }
         handleChangeEmail = event => {
                 this.setState({ email: event.target.value });
@@ -19,11 +25,10 @@ export default class Login extends React.Component{
                         email: this.state.email,
                         password:this.state.password
                       };
+                // const [cookies, setCookie] = useCookies(['name']);
+
                 console.log(user)
-                // const user = {
-                //   name: this.state.name
-                // };
-                // Route::post('auth/login', [UsersController::class,'login']);//++
+               
                 const api = {
                         headers: {
                             'Content-Type': 'application/json',
@@ -35,20 +40,31 @@ export default class Login extends React.Component{
                         },
                         url: "http://localhost:8000/api/auth/login"
                     };
+                //     const [cookies, setCookie] = useCookies(['user']);
+
                     console.log(api);
                     axios.post(api.url, api.data, { headers: api.headers })
                     .then(function (response) {
-                        console.log(response);
+                        console.log(response.data.token);
+                        // document.cookie="token="+response.data.token
+                        // setCookie('token',response.data.token)
+                        cookies.set('token', response.data.token);
+                        axios.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
+                        console.log(axios.defaults.headers.common.Authorization)
+                        console.log('go post');
+                        window.location.href = '/posts'
+
                       })
                       .catch(function (error) {
                         console.log(error);
                       });
-                // axios.post(`auth/login`, { user })
-                //   .then(res => {
-                //     console.log(res);
-                //     console.log(res.data);
-                //   })
+                      
               }
+              passwordreset = event => {
+                      console.log('reset')
+                        window.location.href = '/passwordreset'
+              }
+              
         render(){
         return (
                 <div className='login'>
@@ -57,68 +73,14 @@ export default class Login extends React.Component{
                         <form onSubmit={this.handleSubmit}>
                         <input type='text' placeholder='Email' onChange={this.handleChangeEmail} name="email"></input><br></br>
                         <input type='password' placeholder='password' onChange={this.handleChangePassword} name="password"></input><br></br>
-                        <input type='submit' value='Sing in'></input>
+                        <input type='submit' value='Sing in' ></input><br></br>
+                        {/*  */}
+                        <div className='password_reset'><Link to='passwordreset'>Password Reset</Link></div>
                         </form>
+                        
+                        
                 </div>
         );
         }
     
 }
-// const initialState = {
-//   email: '',
-//   password: '',
-//   err: '',
-//   success: ''
-// }
-
-// export default function Login(){
-//   let dispatch = useDispatch()
-//   const [user, setUser] = useState(initialState)
-//   const {email, password, err, success} = user
-
-//   const handleChangeInput = e => {
-//     const {name, value} = e.target
-//     setUser({...user, [name]:value, err: '', success: ''})
-//   }
-
-//   const handleSubmit = async e => {
-//     e.preventDefault()
-//     try {
-//       const res = await axios.post('api/auth/login', {email, password})
-//       setUser({...user, err: '', success: res.data.msg})
-//       localStorage.setItem('logInOnStartUp', true)
-//       dispatch(login())
-//       window.location.href = '/'
-//     } catch (err) {
-//         err.response.data.msg &&
-//           setUser({...user, err: err.response.data.msg, success: ''})
-//     }
-//   }
-
-//   return (
-//     <div>
-//       <h2>Login</h2>
-//       {err && showErrMsg(err)}
-//       {success && showSuccessMsg(success)}
-//       <form onSubmit={handleSubmit}>
-//         <div>
-//           <label htmlFor={'login-email'}>Email</label>
-//           <input type={'email'} required={true} name={'email'} id={'login-email'}
-//                  value={email} onChange={handleChangeInput}/>
-//         </div>
-//         <div>
-//           <label htmlFor={'login-password'}>Password</label>
-//           <input type={'password'} required={true} name={'password'} id={'login-password'}
-//                  value={password} onChange={handleChangeInput}/>
-//         </div>
-//         <div>
-//           <button type={"submit"}>Login</button>
-//           <Link to={'/forgotPassword'}>Forgot your password</Link>
-//         </div>
-//       </form>
-
-//       <p>New Customer? <Link to={'/register'}>Register</Link></p>
-//     </div>
-//   )
-// }
-// export default Login;

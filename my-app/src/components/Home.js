@@ -2,7 +2,7 @@ export default function Home() {
     return (
         <main>
       <div className='menu'>
-        <p>Do you have question?</p>
+        <p>Do you have a question?</p>
         <div className="menutitle">
           <div className='menu1'></div>
           <div className='menu2'><br></br><br></br>We have an answer to your question<br></br>

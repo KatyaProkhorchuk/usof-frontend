@@ -54,7 +54,7 @@ header{
   /* height: auto; */
   border-radius: 3px;
   display: grid;
-  grid-template-columns: 15% 25% 40% 20%;
+  grid-template-columns: 15% 25% 35% 25%;
 }
 input[type="text"], input[type='password']{
   width:250px;
@@ -91,7 +91,7 @@ header input[type='button']{
   font-weight: 700;
   font-family:Bookman, URW Bookman L, serif;
 }
-a{
+header a{
   color:#CFF9FF;
   text-decoration: none;
   font-size:20px;
@@ -138,6 +138,41 @@ main{
   text-align: center;
   padding-top:10px;
 }
+.posts{
+  width: 90%;
+  margin: auto;
+  border-radius: 10px;
+  margin-top:150px;
+  height: 800px;
+  background: white;
+  padding-top:10px;
+}
+.post{
+  width: 30%;
+  height: 90px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
+  background:#CFF9FF; 
+}
+.categories{
+  width: 100px;
+  background: #829DA1;
+  height: 30px;
+  margin-top:10px;
+  padding-top:10px;
+  text-align: center;
+  /* width:; */
+  border-radius: 10px;
+}
+.posts p{
+  font-family:Bookman, URW Bookman L, serif;
+  font-size:30px;
+  font-weight: 700;
+  text-align: center;
+}
 .login p{
   font-family:Bookman, URW Bookman L, serif;
   font-size:30px;
@@ -145,6 +180,9 @@ main{
 
 }
 .login input[type='text']{
+  margin:20px;
+}
+.login input[type='password']{
   margin:20px;
 }
 .login input[type='submit']{
@@ -155,6 +193,27 @@ main{
   border-radius: 3px;
   background:  #AED1D6;
 }
+.login .password_reset{
+  margin-top: 10px;
+}
+#password_reset{
+  width: 200px;
+}
+#checkemail{
+  margin-top: 10px;
+  display: none;
+}
+#erroremail{
+  margin-top: 10px;
+  display: none;
+}
+.login .password_reset a{
+  color: black;
+  text-decoration: none;
+  font-size:14px;
+  
+  font-family:Bookman, URW Bookman L, serif;
+ }
 .menutitle{
   display: grid;
   grid-template-columns: 55% 45%;
@@ -216,3 +275,18 @@ footer{
   font-weight: 700;
   text-align: center;
 }
+#logout{
+  color:#CFF9FF;
+  font-size:20px;
+  font-family:Bookman, URW Bookman L, serif;
+}
+.login label{
+  margin-left: 43px;
+}
+/* #logout{
+  display: none;
+  padding-right: 10px;
+}
+#update{
+  display: none;
+} */
