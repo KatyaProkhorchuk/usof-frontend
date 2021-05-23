@@ -5,6 +5,24 @@ import {Link} from "react-router-dom";
 
 const cookies = new Cookies();
 const token = cookies.get('token');
+function sortCategories(){
+  console.log('sort')
+  return(
+    <>
+    </>
+  )
+}
+function postView(){
+  console.log('post')
+  console.log(document.getElementById('post1').value)
+  cookies.set('postId', document.getElementById('post1').value);
+  window.location.href='/informationPost'
+  return(
+    <>
+
+    </>
+  )
+}
 function Post() {
   const api = {
     headers: {
@@ -16,10 +34,13 @@ function Post() {
     console.log(api)
     axios.get(api.url, { headers: api.headers })
     .then(function (response) {
+      console.log(response.data)
       const array=response.data[response.data.length-1].title
       console.log(array)
       document.getElementById('post1').innerHTML=response.data[response.data.length-1].title
-      document.getElementById('categories1').innerHTML=response.data[response.data.length-1].categories
+      document.getElementById('post1').value=response.data[response.data.length-1].id
+      document.getElementById('content1').innerHTML='<label> Content:   '+response.data[response.data.length-1].content+'</label>'
+      document.getElementById('categories').innerHTML=response.data[response.data.length-1].categories
       // n=response.data.length-1
         return(
           <div>{response.data[response.data.length-1].title}</div>
@@ -72,10 +93,12 @@ export default class Posts extends React.Component {
         <>
         <Post/>
         <div className='posts'>
-          <p>Last Post</p>
-          <div className='post'>
-            <div id ='post1'></div>
-            <div id='categories1'className='categories'></div>
+          <div className='AddPost'><Link to='/createpost' >Add new post  +</Link></div>
+          <p id='activePost'>Active posts</p>
+          <div className='post' onClick={postView}>
+            <div  className='postDb' id ='post1'></div>
+            <div  className='postDb' id ='content1'></div>
+            <button id='categories'className='categories'  onClick={sortCategories}></button>
           </div>
           {/* <div className='post'>
             <div id ='post2'></div>

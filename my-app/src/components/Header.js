@@ -45,7 +45,7 @@ function LoggedButtons() {
   return (
     <>
       <p id='update'>
-        <Link to="/updateprofile" >Update Prifile</Link>
+        <Link to="/updateprofile" >Update Profile</Link>
       </p>
       <p  id="logout"onClick={logout}>Log out
         
