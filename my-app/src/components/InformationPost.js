@@ -74,7 +74,37 @@ function dislike() {
         </>
       )
 }
-
+function CommentCreate() {
+    console.log('comment')
+    var text=document.getElementById('commentText').value
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    var arr=new Object();
+    arr['content']=text
+    if(text){
+        console.log(text)
+        const api ={
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            data:arr,
+            url: "http://localhost:8000/api/posts/"+PostId+"/comments"
+            };
+            console.log(api)
+            axios.post(api.url, api.data,{ headers: api.headers })
+            .then(function (response) {
+                console.log(response)
+                
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+            
+        document.getElementById('commentText').value=null
+        
+        window.location.href='/informationPost'
+    }
+}
 function userName(user_id,str1,func) {
     console.log(user_id)
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -216,6 +246,10 @@ export default function InformationPost()  {
                         </div>
                         <div id='contentComment'></div>
                     </div> */}
+                </div>
+                <div className='commentCreate'>
+                <textarea id ='commentText' placeholder='comments'></textarea>
+                <div className='buttonComment' onClick={CommentCreate}>Send</div>
                 </div>
             </div>
         </div>

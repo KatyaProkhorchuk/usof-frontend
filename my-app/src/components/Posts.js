@@ -2,7 +2,16 @@ import axios from 'axios';
 import React from 'react';
 import Cookies from 'universal-cookie';
 import {Link} from "react-router-dom";
+import Select from 'react-select';
 
+const categorySelect=[
+  {value:'',label:'All'},
+  {value:'1',label:'Python'},
+  {value:'2',label:'Web'},
+  {value:'3',label:'Laravel'},
+  {value:'4',label:'Php'},
+  {value:'5',label:'Backend'},
+]
 const cookies = new Cookies();
 const token = cookies.get('token');
 function sortCategories(){
@@ -55,45 +64,29 @@ function Post() {
       )
 }
 export default class Posts extends React.Component {
-    // function isLogin(){
-    //     const token = cookies.get('token');
-    //     console.log('post')
-    //     console.log(token)
-    //     if(token){
-    //         document.getElementById('logout').style.display='none'
-    //         console.log ()
-    //         // 
-    //         // document.getElementById('signup').style.display="none";
-    //         // document.getElementById('update').style.display="inline-block";
-    //         // document.getElementById('logout').style.display="inline-block";
-    //         // document.getElementById('logout').style.display='block';
-
-    //         axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-    //         var signin = document.querySelector('signin');
-    //         // console.log(signin)
-    //         // document.getElementById('logout').style.display="none";
-    //     }
-    // }
-    // isLogin() 
-    // return (
-    //     <div>
-    //         post
-    //     </div>
-    // )
-    // handle(){
-    //     document.getElementById('signin').style.display="none";
-    //     document.getElementById('signup').style.display="none";
-    //     document.getElementById('update').style.display="inline-block";
-    //     document.getElementById('logout').style.display="inline-block";
-    //     setTimeout(899)        
-    // }
-    
+    state={
+      selectedOption:null,
+      posts:[],
+      category:[],
+      select:true
+    }
+    handleChange=selectedOption=>{
+      this.setState({selectedOption});
+      console.log(selectedOption)
+    }
     render() {
+      const {selectedOption}=this.state;
+      const {select}=this.state;
         return (
         <>
         <Post/>
         <div className='posts'>
-          <div className='AddPost'><Link to='/createpost' >Add new post  +</Link></div>
+          <div className='headelSelect'>
+          <Select className='select'
+          value={selectedOption}
+          onChange={this.handleChange}
+          options={categorySelect}/>
+          <div className='AddPost'><Link to='/createpost' >Add new post  +</Link></div></div>
           <p id='activePost'>Active posts</p>
           <div className='post' onClick={postView}>
             <div  className='postDb' id ='post1'></div>
