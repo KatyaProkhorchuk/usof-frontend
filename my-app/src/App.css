@@ -56,6 +56,17 @@ header{
   display: grid;
   grid-template-columns: 15% 25% 35% 25%;
 }
+footer{
+  background:#516163;
+  box-shadow: 5px 5px 5px #C2EAF0;  width: 100%;
+  margin-top: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 3px;
+}
+.info{
+  margin-top: 10px;
+}
 input[type="text"], input[type='password']{
   width:250px;
   background:#95B4B8;
@@ -86,23 +97,38 @@ header input[type='button']{
   margin-left: 10px;
   text-align: center;
 }
+footer .logo a{
+  text-decoration: none;
+  margin-top: 7px;
+  font-size:25px;
+  margin-left: 10px;
+  text-align: center;
+}
+footer .logo{
+  margin-top: 30px;
+  text-align: left;
+  margin-left: 100px;
+}
 .logo a{
   color:#CFF9FF;
   font-weight: 700;
   font-family:Bookman, URW Bookman L, serif;
 }
-header a{
+header a, footer a{
   color:#CFF9FF;
   text-decoration: none;
   font-size:20px;
   font-family:Bookman, URW Bookman L, serif;
 }
-header li{
+header li, footer li{
   list-style: none;
   display: inline-block;
   margin-right: 20px;
 }
-
+.footer nav{
+  margin-top: 20px;
+  margin-left: 600px;
+}
 header p{
   display: inline-block;
   margin-right:10px;
@@ -328,19 +354,18 @@ main{
   font-weight: 500;
   text-align: left;
 }
-footer{
-  width: 100%;
-  margin-top: 30px;
-}
 .footer{
   background:#516163;
-  height: 300px;
+  display: grid;
+  grid-template-columns: 10% 30% 60%;
 }
+
 .footer p{
   font-family:Bookman, URW Bookman L, serif;
-  font-size:30px;
+  font-size:16px;
   font-weight: 700;
   text-align: center;
+  color:#CFF9FF;
 }
 #logout{
   color:#CFF9FF;
@@ -651,7 +676,6 @@ height: 0;
   box-shadow: 1px 2px 2px #C2EAF0;
   height: 600px;
   border-radius: 3px;
-  transform: scale(-1, 1);
   border:none;
    margin-left: 10px;
   width: 600px;
