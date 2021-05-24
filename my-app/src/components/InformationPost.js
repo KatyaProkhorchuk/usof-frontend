@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { Component, useEffect } from 'react';
 import Cookies from 'universal-cookie';
-
+var status
 const cookies = new Cookies();
 const token = cookies.get('token');
 var PostId=0
 // document.getElementById("like").onclick = function () {
 let user
+var flag;
 function likes() {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
     console.log('like')
@@ -54,7 +55,7 @@ function dislike() {
         url: "http://localhost:8000/api/posts/"+PostId+"/like"
         };
         console.log(api)
-        axios.delete(api.url,api.data, { headers: api.headers })
+        axios.post(api.url,api.data, { headers: api.headers })
         .then(function (response) {
             console.log(response)
             tmp= document.getElementById('count_like').value;
@@ -94,15 +95,17 @@ function CommentCreate() {
             axios.post(api.url, api.data,{ headers: api.headers })
             .then(function (response) {
                 console.log(response)
-                
+                document.getElementById('commentText').value=null
+                window.location.href='/informationPost'
             })
             .catch(function (error) {
               console.log(error);
+              
             });
             
-        document.getElementById('commentText').value=null
         
-        window.location.href='/informationPost'
+        
+        
     }
 }
 function userName(user_id,str1,func) {
@@ -204,17 +207,55 @@ function ThisPost() {
             document.getElementById('count_like').innerHTML=response.data[0].rating
             document.getElementById('count_like').value=response.data[0].rating
             document.getElementById('categories1').innerHTML=response.data[response.data.length-1].categories
-            
+            console.log(response.data[0].user_id)
+            var user=cookies.get('user_id')
+            if (user==response.data[0].user_id){
+                document.getElementById('notifButton1').style.display='block'
+                document.getElementById('notifButton2').style.display='block'
+            }
+            if(response.data[0].status==1){
+                status=response.data[0].status
+                document.getElementById("statusPost").innerHTML='This post is active'
+                console.log('status='+status)
+            }
+            else {
+                document.getElementById("statusPost").innerHTML='This post is no active'
+            }
         })
         .catch(function (error) {
           console.log(error);
         });
+        console.log('status='+status)
     return(
         <>
         </>
     )
 }
+function UpdatePost() {
+    console.log('update')
+    window.location.href='/updatePost'
+}
+function deletePost() {
+    const api = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        url: "http://localhost:8000/api/posts/"+PostId
+    };
+    console.log(api); 
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 
+    axios.delete(api.url, api.data, { headers: api.headers })
+    .then(function (response) {
+        console.log(response);
+        
+        window.location.href='/posts';
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+}
 export default function InformationPost()  {
         useEffect(() => {
             Comments()
@@ -223,7 +264,15 @@ export default function InformationPost()  {
         return (
         <>
         <ThisPost/>
+        
         <div className='informationThisPost'>
+            <p id='statusPost'></p>
+        
+            <div className='notificationPost' id='notificationPost'>
+                <div className='notifButton' id='notifButton1' onClick={UpdatePost}>Update</div>
+                <div className='notifButton' id='notifButton2' onClick={deletePost}>Delete</div>
+            </div>
+            <div className='informationPost'>
             <div id='rating'>
                <div id = 'like' onClick={likes}></div>
                <p id='count_like'></p>
@@ -247,40 +296,16 @@ export default function InformationPost()  {
                         <div id='contentComment'></div>
                     </div> */}
                 </div>
+            
+                    {/* <ViewComment/> */}
+                
                 <div className='commentCreate'>
                 <textarea id ='commentText' placeholder='comments'></textarea>
                 <div className='buttonComment' onClick={CommentCreate}>Send</div>
                 </div>
             </div>
         </div>
-        {/* <Post/>
-        <div className='posts'>
-          <div className='AddPost'><Link to='/createpost' >Add new post  +</Link></div>
-          <p id='activePost'>Active posts</p>
-          <div className='post' onClick={postView}>
-            <div  className='postDb' id ='post1'></div>
-            <div  className='postDb' id ='content1'></div>
-            <button id='categories1'className='categories'  onClick={sortCategories}></button>
-          </div> */}
-          {/* <div className='post'>
-            <div id ='post2'></div>
-          </div>
-          <div className='post'>
-            <div id ='post3'></div>
-          </div>
-          <div className='post'>
-            <div id ='post4'></div>
-          </div>
-          <div className='post'>
-            <div id ='post5'></div>
-          </div>
-          <div className='post'>
-            <div id ='post6'></div>
-          </div>
-          <div className='post'>
-            <div id ='post2'></div>
-          </div> */}
-        {/* </div> */}
-        </>
+        </div>
+       </>
         )
 }

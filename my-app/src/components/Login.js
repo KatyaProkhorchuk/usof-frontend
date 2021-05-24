@@ -40,14 +40,17 @@ export default class Login extends React.Component{
                         },
                         url: "http://localhost:8000/api/auth/login"
                     };
+                    
                 //     const [cookies, setCookie] = useCookies(['user']);
 
                     console.log(api);
                     axios.post(api.url, api.data, { headers: api.headers })
                     .then(function (response) {
+                        console.log(response.data.user.id)
                         console.log(response.data.token);
                         // document.cookie="token="+response.data.token
                         // setCookie('token',response.data.token)
+                        cookies.set('user_id',response.data.user.id)
                         cookies.set('token', response.data.token);
                         axios.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
                         console.log(axios.defaults.headers.common.Authorization)

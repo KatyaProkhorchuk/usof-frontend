@@ -53,6 +53,7 @@ export default class Register extends React.Component{
                     url: "http://localhost:8000/api/auth/register"
                 };
                 console.log(api);
+                if(this.state.password==this.state.repeat){
                 axios.post(api.url, api.data, { headers: api.headers })
                 .then(function (response) {
                     console.log(response);
@@ -61,6 +62,7 @@ export default class Register extends React.Component{
                   .catch(function (error) {
                     console.log(error);
                   });
+                }
 
           }
           

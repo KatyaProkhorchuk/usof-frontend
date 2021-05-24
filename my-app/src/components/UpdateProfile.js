@@ -54,6 +54,29 @@ function LogUpdate() {
               return (<><div></div>
                     </>);
 }
+function deleteProfile() {
+    console.log(';ld')
+    var userId=cookies.get('user_id');
+    const api = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        url: "http://localhost:8000/api/users/"+userId
+    };
+    console.log(api); 
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+
+    axios.delete(api.url, api.data, { headers: api.headers })
+    .then(function (response) {
+        console.log(response);
+        cookies.remove('token')
+        window.location.href='/';
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+}
 export default class Register extends React.Component{
     state={
             email:'',
@@ -137,6 +160,7 @@ export default class Register extends React.Component{
                         axios.patch(api.url+response.data, api.data,{ headers: api.headers })
                           .then(function (response) {
                             console.log(response);
+                            window.location.href='/updateprofile'
                           })
                           .catch(function (error) {
                             console.log(error);
@@ -144,6 +168,7 @@ export default class Register extends React.Component{
                       })
                       .catch(function (error) {
                         console.log(error);
+                        
                       });
             console.log(user_id)
             
@@ -188,8 +213,9 @@ export default class Register extends React.Component{
                     
                    <input type='text' placeholder='Your name' onChange={this.handleChangeName} name="name"></input><br></br>
                     <input type='submit' value='Update'></input>
-                    
+                    <div className='deleteProfile'onClick={deleteProfile}>DeleteProfile</div>
                     </form> 
+                    
                     </div>
             </div>
 

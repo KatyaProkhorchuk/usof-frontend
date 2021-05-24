@@ -5,6 +5,8 @@ const cookies = new Cookies();
 function logout(){
   console.log('hi')
   cookies.remove('token')
+  cookies.remove('user_id')
+  cookies.remove('postId')
   window.location.href='/'
 }
 function LoginButtons() {
@@ -54,7 +56,35 @@ function LoggedButtons() {
     </>
   )
 }
-
+function SearchPost() {
+  var textSearch=document.getElementById('searchText').value
+  console.log(textSearch)
+  
+  cookies.set('search',textSearch)
+  window.location.href='/postsSearch';
+  // console.log()
+  // const api = {
+  //   headers: {
+  //       'Content-Type': 'application/json',
+  //       'Accept': 'application/json'
+  //   },
+  //   data:arr,
+  //   url: "http://localhost:8000/api/postsFound"
+  //   };
+  //   console.log(api)
+  //   axios.get(api.url,api.data, { headers: api.headers })
+  //   .then(function (response) {
+  //       console.log(response)
+  //       tmp= document.getElementById('count_like').value;
+  //       tmp=tmp+1
+  //       document.getElementById('count_like').innerHTML=tmp
+  //       document.getElementById('count_like').value=tmp
+        
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
+}
 export default function Header() {
   const token = cookies.get('token');
     return (
@@ -62,9 +92,9 @@ export default function Header() {
         <div className='logo'>
           <Link to='/'>BrainIT</Link>
         </div>
-        <div className='search'>
-          <input type='text'></input>
-          <input type='button'value='hi'></input>
+        <div className='search' >
+          <input type='text' id='searchText'></input>
+          <input type='button'value='hi' onClick={SearchPost}></input>
         </div>
         <nav>
           <ul>

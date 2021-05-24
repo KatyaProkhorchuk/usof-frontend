@@ -5,6 +5,8 @@ import UpdateProfile from './components/UpdateProfile.js'
 import PasswordReset from './components/PasswordReset.js'
 import CreatePost from './components/CreatePost.js';
 import InformationPost from './components/InformationPost.js';
+import UpdatePost from './components/UpdatePost.js';
+import PostsSearch from './components/PostsSearch.js'
 // import {useDispatch, useSelector} from "react-redux";
 import {BrowserRouter as Router, Switch,Route } from "react-router-dom";
 import Header from './components/Header';
@@ -26,6 +28,8 @@ function App() {
           <Route path="/createpost" component={CreatePost} />
           <Route path="/informationPost" component={InformationPost} />
           <Route path="/updateprofile" component={UpdateProfile} />
+          <Route path="/updatePost" component={UpdatePost} />
+          <Route path="/postsSearch" component={PostsSearch} />
           <Route path="/passwordreset" component={PasswordReset} />
         </Switch>
         <Footer />

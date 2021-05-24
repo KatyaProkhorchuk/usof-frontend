@@ -143,7 +143,7 @@ main{
   margin: auto;
   border-radius: 10px;
   margin-top:150px;
-  height: 800px;
+  min-height: 800px;
   /* background:#C2EAF0;; */
   padding-top:10px;
 }
@@ -422,8 +422,16 @@ footer{
   border-radius: 10px;
   margin-top:150px;
   /* height: 800px; */
-  background:rosybrown;
   padding-top:10px;
+  
+}
+#statusPost{
+  font-family:Bookman, URW Bookman L, serif;
+  font-size:30px;
+  font-weight: 500;
+  text-align: center;
+}
+.informationPost{
   display: grid;
   grid-template-columns: 20% 80%;
 }
@@ -586,7 +594,47 @@ height: 0;
 }
 .headelSelect{
   display: grid;
+  margin-top: 40px;
   grid-template-columns: 20% 80%;
+}
+.post p{
+  display: none;
+}
+.notificationPost{
+  width: 300px;
+  height: 70px;
+  /* background: wheat; */
+  position: relative;
+  /* float: right; */
+  /* margin: auto; */
+  display: none;
+  margin-left: 70%;
+  /* margin-right: 100px; */
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  margin-bottom: 10px;
+}
+.notifButton{
+  margin-top: 30px;
+  margin-left: 30px;
+  padding-top: 10px;
+  width: 100px;
+  display: none;
+  height: 30px;
+  text-align: center;
+  background:#516163;
+  border-radius: 10px;
+}
+.deleteProfile{
+  width: 100px;
+  margin: auto;
+  margin-top: 10px;
+  height: 25px; 
+  padding-top: 5px;
+  border-radius: 5px;
+  background: #AED1D6;
+  font-family:Bookman, URW Bookman L, serif;
 }
 /* #logout{
   display: none;
