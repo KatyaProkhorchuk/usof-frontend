@@ -45,6 +45,19 @@ Every developer know USOF<br></br>
         </div>
         
       </div>
+      <div className='menu'>
+        <p>About us</p>
+        <div className="menutitle"><div className='menu4' id='menu5'>
+        Founded in 2021, USOF public platform is used by nearly everyone who codes to learn, share their knowledge, collaborate, and build their careers.
+
+<br></br>
+We do our best work when a diverse group of people collaborate in an environment of respect and trust. Create space for different voices to be heard, and allow flexibility in how people work.
+        </div>
+          <div className='menu6'></div>
+          
+        </div>
+        
+      </div>
       </main>
     )
 }

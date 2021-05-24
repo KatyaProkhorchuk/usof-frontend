@@ -532,7 +532,7 @@ height: 0;
 #comment{
   width: 80%;
   height: 100px;
-  background: #BCE2E8;
+  background: #CFF9FF;
   margin-left: 80px;
   font-size: 20px;
   text-indent: 0.5em;
@@ -551,6 +551,7 @@ height: 0;
   padding-left: 10px;
   background: #A7C9CF;
   border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
   /* text-align: center; */
  
 }
@@ -630,11 +631,31 @@ height: 0;
   width: 100px;
   margin: auto;
   margin-top: 10px;
-  height: 25px; 
+  height: 20px; 
   padding-top: 5px;
   border-radius: 5px;
   background: #AED1D6;
   font-family:Bookman, URW Bookman L, serif;
+}
+#number{
+  color:#CFF9FF;
+  font-weight: 700;
+  margin-left: 20px;
+  font-family:Bookman, URW Bookman L, serif;
+  margin-top: 10px;
+}
+.menu6{
+  /* display: block; */
+  background: url('./team.png');
+  background-size: cover;
+  box-shadow: 1px 2px 2px #C2EAF0;
+  height: 600px;
+  border-radius: 3px;
+  transform: scale(-1, 1);
+  border:none;
+   margin-left: 10px;
+  width: 600px;
+  color: rgba(0,0,0,0);
 }
 /* #logout{
   display: none;

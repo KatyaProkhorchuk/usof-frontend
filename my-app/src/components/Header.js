@@ -37,7 +37,7 @@ function Post() {
 function NoPosts(){
   return(
     <> 
-      <li><HashLink to='/#footer' >About us</HashLink></li>
+      <li><HashLink to='/#menu5' >About us</HashLink></li>
       <li><HashLink to='/#menu4' >Categories</HashLink></li>
     </>
   )
@@ -62,28 +62,7 @@ function SearchPost() {
   
   cookies.set('search',textSearch)
   window.location.href='/postsSearch';
-  // console.log()
-  // const api = {
-  //   headers: {
-  //       'Content-Type': 'application/json',
-  //       'Accept': 'application/json'
-  //   },
-  //   data:arr,
-  //   url: "http://localhost:8000/api/postsFound"
-  //   };
-  //   console.log(api)
-  //   axios.get(api.url,api.data, { headers: api.headers })
-  //   .then(function (response) {
-  //       console.log(response)
-  //       tmp= document.getElementById('count_like').value;
-  //       tmp=tmp+1
-  //       document.getElementById('count_like').innerHTML=tmp
-  //       document.getElementById('count_like').value=tmp
-        
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error);
-  //   });
+ 
 }
 export default function Header() {
   const token = cookies.get('token');
